@@ -58,6 +58,7 @@ export interface RedocRawOptions {
   minCharacterLengthToInitSearch?: number;
   showWebhookVerb?: boolean;
   putDownScheme?: boolean;
+  customSchemaLabel?: string;
 }
 
 export function argValueToBoolean(val?: string | boolean, defaultValue?: boolean): boolean {
@@ -260,6 +261,7 @@ export class RedocNormalizedOptions {
   minCharacterLengthToInitSearch: number;
   showWebhookVerb: boolean;
   putDownScheme: boolean;
+  customSchemaLabel: string;
 
   nonce?: string;
 
@@ -341,5 +343,6 @@ export class RedocNormalizedOptions {
     this.minCharacterLengthToInitSearch = argValueToNumber(raw.minCharacterLengthToInitSearch) || 3;
     this.showWebhookVerb = argValueToBoolean(raw.showWebhookVerb);
     this.putDownScheme = argValueToBoolean(raw.putDownScheme, false);
+    this.customSchemaLabel = raw.customSchemaLabel ? raw.customSchemaLabel.substring(7) : 'schema';
   }
 }
