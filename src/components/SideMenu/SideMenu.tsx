@@ -19,7 +19,7 @@ export class SideMenu extends React.Component<{ menu: MenuStore; className?: str
     const store = this.props.menu;
     const items = store.items;
 
-    if (this.context.putDownScheme) {
+    if (this.context.putDownSchema) {
       const reorderSchema = item => {
         if (item.type === 'tag') {
           return item.items.sort((a, b) => {

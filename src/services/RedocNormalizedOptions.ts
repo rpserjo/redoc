@@ -57,7 +57,7 @@ export interface RedocRawOptions {
   hideFab?: boolean;
   minCharacterLengthToInitSearch?: number;
   showWebhookVerb?: boolean;
-  putDownScheme?: boolean;
+  putDownSchema?: boolean;
   customSchemaLabel?: string;
 }
 
@@ -260,7 +260,7 @@ export class RedocNormalizedOptions {
   hideFab: boolean;
   minCharacterLengthToInitSearch: number;
   showWebhookVerb: boolean;
-  putDownScheme: boolean;
+  putDownSchema: boolean;
   customSchemaLabel: string;
 
   nonce?: string;
@@ -342,7 +342,7 @@ export class RedocNormalizedOptions {
     this.hideFab = argValueToBoolean(raw.hideFab);
     this.minCharacterLengthToInitSearch = argValueToNumber(raw.minCharacterLengthToInitSearch) || 3;
     this.showWebhookVerb = argValueToBoolean(raw.showWebhookVerb);
-    this.putDownScheme = argValueToBoolean(raw.putDownScheme, false);
+    this.putDownSchema = argValueToBoolean(raw.putDownSchema, false);
     this.customSchemaLabel = raw.customSchemaLabel ? raw.customSchemaLabel.substring(7) : 'schema';
   }
 }
