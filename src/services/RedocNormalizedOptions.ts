@@ -343,6 +343,6 @@ export class RedocNormalizedOptions {
     this.minCharacterLengthToInitSearch = argValueToNumber(raw.minCharacterLengthToInitSearch) || 3;
     this.showWebhookVerb = argValueToBoolean(raw.showWebhookVerb);
     this.putDownSchema = argValueToBoolean(raw.putDownSchema, false);
-    this.customSchemaLabel = raw.customSchemaLabel ? raw.customSchemaLabel.substring(7) : 'schema';
+    this.customSchemaLabel = raw.customSchemaLabel ? raw.customSchemaLabel.substring(0, 7) : 'schema';
   }
 }
