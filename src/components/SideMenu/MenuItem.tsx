@@ -20,6 +20,7 @@ export interface MenuItemProps {
 
 @observer
 export class MenuItem extends React.Component<MenuItemProps> {
+  static contextType = OptionsContext;
   ref = React.createRef<HTMLLabelElement>();
 
   activate = (evt: React.MouseEvent<HTMLElement>) => {
@@ -55,7 +56,9 @@ export class MenuItem extends React.Component<MenuItemProps> {
           <OperationMenuItemContent {...this.props} item={item as OperationModel} />
         ) : (
           <MenuItemLabel $depth={item.depth} $active={item.active} $type={item.type} ref={this.ref}>
-            {item.type === 'schema' && <OperationBadge type="schema">schema</OperationBadge>}
+            {item.type === 'schema' && (
+              <OperationBadge type="schema">{this.context.customSchemaLabel}</OperationBadge>
+            )}
             <MenuItemTitle width="calc(100% - 38px)" title={item.sidebarLabel}>
               {item.sidebarLabel}
               {this.props.children}
