@@ -19,24 +19,6 @@ export class SideMenu extends React.Component<{ menu: MenuStore; className?: str
     const store = this.props.menu;
     const items = store.items;
 
-    if (this.context.putDownSchema) {
-      const reorderSchema = item => {
-        if (item.type === 'tag') {
-          return item.items.sort((a, b) => {
-            return a.type === 'schema' ? -1 : b.type === 'schema' ? -1 : 0;
-          });
-        } else {
-          return item;
-        }
-      };
-
-      items.map(item => {
-        if (item.type === 'group') {
-          return item.items.map(reorderSchema);
-        }
-        return reorderSchema(item);
-      });
-    }
     return (
       <PerfectScrollbarWrap
         updateFn={this.saveScrollUpdate}

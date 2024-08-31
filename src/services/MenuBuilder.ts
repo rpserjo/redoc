@@ -143,11 +143,17 @@ export class MenuBuilder {
         parent: item,
       });
 
-      item.items = [
-        ...relatedSchemas,
-        ...MenuBuilder.addMarkdownItems(tag.description || '', item, item.depth + 1, options),
-        ...this.getOperationsItems(parser, item, tag, item.depth + 1, options),
-      ];
+      item.items = options.putDownSchema
+        ? [
+            ...MenuBuilder.addMarkdownItems(tag.description || '', item, item.depth + 1, options),
+            ...this.getOperationsItems(parser, item, tag, item.depth + 1, options),
+            ...relatedSchemas,
+          ]
+        : [
+            ...relatedSchemas,
+            ...MenuBuilder.addMarkdownItems(tag.description || '', item, item.depth + 1, options),
+            ...this.getOperationsItems(parser, item, tag, item.depth + 1, options),
+          ];
 
       res.push(item);
     }
