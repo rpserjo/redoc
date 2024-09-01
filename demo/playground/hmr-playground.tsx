@@ -16,14 +16,6 @@ const options: RedocRawOptions = {
   maxDisplayedEnumValues: 3,
   putDownSchema: true,
   collapsibleGroups: true,
-  theme: {
-    sidebar: {
-      'level-1Items': {
-        fontWeight: '800',
-        textTransform: 'capitalize'
-      }
-    }
-  }
 };
 
 render(<RedocStandalone specUrl={specUrl} options={options} />, document.getElementById('example'));

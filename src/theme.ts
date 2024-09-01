@@ -143,7 +143,7 @@ const defaultTheme: ThemeInterface = {
     'level-1Items': {
       activeBackgroundColor: theme => darken(0.15, theme.sidebar.backgroundColor),
       fontSize: '0.9em',
-      fontWeight: '400',
+      fontWeight: '600',
       textTransform: 'uppercase',
     },
     groupItems: {
