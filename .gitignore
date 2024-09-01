@@ -25,7 +25,7 @@ lib/
 stats.json
 cypress/
 bundles/*
-!bundles/redoc.standalone.js
+!bundles/redoc.standalone*.js
 typings/*
 !typings/styled-patch.d.ts
 

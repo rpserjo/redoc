@@ -140,6 +140,12 @@ const defaultTheme: ThemeInterface = {
       theme.sidebar.textColor !== defaultTheme.sidebar!.textColor
         ? theme.sidebar.textColor
         : theme.colors.primary.main,
+    'level-1Items': {
+      activeBackgroundColor: theme => darken(0.15, theme.sidebar.backgroundColor),
+      fontSize: '0.9em',
+      fontWeight: '400',
+      textTransform: 'uppercase',
+    },
     groupItems: {
       activeBackgroundColor: theme => darken(0.1, theme.sidebar.backgroundColor),
       activeTextColor: theme => theme.sidebar.activeTextColor,
@@ -345,6 +351,12 @@ export interface ResolvedThemeInterface {
     backgroundColor: string;
     textColor: string;
     activeTextColor: string;
+    'level-1Items': {
+      activeBackgroundColor: string;
+      fontSize: string;
+      fontWeight: string;
+      textTransform: string;
+    },
     groupItems: {
       activeBackgroundColor: string;
       activeTextColor: string;
