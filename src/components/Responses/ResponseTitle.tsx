@@ -2,7 +2,6 @@ import * as React from 'react';
 
 import { Code } from './styled.elements';
 import { ShelfIcon } from '../../common-elements';
-import { Markdown } from '../Markdown/Markdown';
 
 export interface ResponseTitleProps {
   code: string;
@@ -39,7 +38,7 @@ function ResponseTitleComponent({
         />
       )}
       <Code>{code} </Code>
-      <Markdown compact={true} inline={true} source={title} />
+      <span>{title}</span>
     </button>
   );
 }
