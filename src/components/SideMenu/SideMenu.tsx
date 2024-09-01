@@ -42,12 +42,16 @@ export class SideMenu extends React.Component<{ menu: MenuStore; className?: str
     if (item && item.active && this.context.menuToggle) {
       return item.expanded ? item.collapse() : item.expand();
     }
-    this.props.menu.activateAndScroll(item, true);
-    setTimeout(() => {
-      if (this._updateScroll) {
-        this._updateScroll();
-      }
-    });
+    if (item.type === 'group' && this.context.collapsibleGroups === true) {
+      item.expanded ? item.collapse() : item.expand();
+    } else {
+      this.props.menu.activateAndScroll(item, true);
+      setTimeout(() => {
+        if (this._updateScroll) {
+          this._updateScroll();
+        }
+      });
+    }
   };
 
   private saveScrollUpdate = upd => {

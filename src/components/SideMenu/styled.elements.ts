@@ -108,6 +108,13 @@ export const MenuItemLi = styled.li<{ depth: number }>`
 `;
 
 export const menuItemDepth = {
+  99: css`
+    opacity: 0.85;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    padding-bottom: 12.5px;
+    cursor: pointer;
+  `,
   0: css`
     opacity: 0.7;
     text-transform: ${({ theme }) => theme.sidebar.groupItems.textTransform};

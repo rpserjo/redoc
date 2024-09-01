@@ -78,7 +78,7 @@ export class MenuBuilder {
   ): GroupModel[] {
     const res: GroupModel[] = [];
     for (const group of groups) {
-      const item = new GroupModel('group', group, parent);
+      const item = new GroupModel('group', group, parent, !options.collapsibleGroups);
       item.depth = GROUP_DEPTH;
       item.items = MenuBuilder.getTagsItems(parser, tags, item, group, options);
       res.push(item);

@@ -55,7 +55,7 @@ export class MenuItem extends React.Component<MenuItemProps> {
         {item.type === 'operation' ? (
           <OperationMenuItemContent {...this.props} item={item as OperationModel} />
         ) : (
-          <MenuItemLabel $depth={item.depth} $active={item.active} $type={item.type} ref={this.ref}>
+          <MenuItemLabel $depth={(item.type === 'group' && this.context.collapsibleGroups) ? 99 : item.depth} $active={item.active} $type={item.type} ref={this.ref}>
             {item.type === 'schema' && (
               <OperationBadge type="schema">{this.context.customSchemaLabel}</OperationBadge>
             )}
@@ -63,7 +63,7 @@ export class MenuItem extends React.Component<MenuItemProps> {
               {item.sidebarLabel}
               {this.props.children}
             </MenuItemTitle>
-            {(item.depth > 0 && item.items.length > 0 && (
+            {(((item.depth > 0 && item.items.length > 0) || (item.depth === 0 && this.context.collapsibleGroups === true)) && (
               <ShelfIcon float={'right'} direction={item.expanded ? 'down' : 'right'} />
             )) ||
               null}

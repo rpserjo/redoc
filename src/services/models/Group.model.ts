@@ -34,6 +34,7 @@ export class GroupModel implements IMenuItem {
     type: MenuItemGroupType,
     tagOrGroup: OpenAPITag | MarkdownHeading,
     parent?: GroupModel,
+    collapsedGroup: boolean = false
   ) {
     makeObservable(this);
 
@@ -58,7 +59,7 @@ export class GroupModel implements IMenuItem {
 
     // groups are active (expanded) by default
     if (this.type === 'group') {
-      this.expanded = true;
+      this.expanded = collapsedGroup;
     }
   }
 
@@ -79,7 +80,7 @@ export class GroupModel implements IMenuItem {
   collapse() {
     // disallow collapsing groups
     if (this.type === 'group') {
-      return;
+      // return;
     }
     this.expanded = false;
   }
