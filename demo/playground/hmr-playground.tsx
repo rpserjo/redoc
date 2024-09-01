@@ -9,8 +9,21 @@ const swagger = window.location.search.indexOf('swagger') > -1;
 const userUrl = window.location.search.match(/url=(.*)$/);
 
 const specUrl =
-  (userUrl && userUrl[1]) || (swagger ? 'swagger.yaml' : big ? 'big-openapi.json' : 'openapi.yaml');
+  (userUrl && userUrl[1]) || (swagger ? 'swagger.yaml' : big ? 'big-openapi.json' : 'specification.json');
 
-const options: RedocRawOptions = { nativeScrollbars: false, maxDisplayedEnumValues: 3 };
+const options: RedocRawOptions = {
+  nativeScrollbars: false,
+  maxDisplayedEnumValues: 3,
+  putDownSchema: true,
+  collapsibleGroups: true,
+  theme: {
+    sidebar: {
+      'level-1Items': {
+        fontWeight: '800',
+        textTransform: 'capitalize'
+      }
+    }
+  }
+};
 
 render(<RedocStandalone specUrl={specUrl} options={options} />, document.getElementById('example'));
