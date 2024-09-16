@@ -23,7 +23,7 @@ export const StyledResponseTitle = styled(ResponseTitle)`
       `
 cursor: default;
 &::before {
-  content: "—";
+  content: "\u2014";
   font-weight: bold;
   width: 1.5em;
   text-align: center;
