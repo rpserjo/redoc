@@ -54,7 +54,7 @@ export class SchemaDefinition extends React.PureComponent<ObjectDescriptionProps
   }
 
   render() {
-    const { showReadOnly = true, showWriteOnly = false, showExample = true } = this.props;
+    const { showReadOnly = true, showWriteOnly = false, showExample = true, options } = this.props;
     return (
       <Section>
         <Row>
@@ -65,7 +65,7 @@ export class SchemaDefinition extends React.PureComponent<ObjectDescriptionProps
               schema={this.mediaModel.schema}
             />
           </MiddlePanel>
-          {showExample && (
+          {showExample && !options.hideSchemaExamples && (
             <DarkRightPanel>
               <MediaSamplesWrap>
                 <MediaTypeSamples
