@@ -105,6 +105,7 @@ export function BodyContent(props: {
             {schema?.type === 'object' && (
               <ConstraintsView constraints={schema?.constraints || []} />
             )}
+            {isRequestType && schema?.description}
             <Schema
               skipReadOnly={isRequestType}
               skipWriteOnly={!isRequestType}
