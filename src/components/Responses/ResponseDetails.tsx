@@ -11,10 +11,13 @@ import { Extensions } from '../Fields/Extensions';
 import { Markdown } from '../Markdown/Markdown';
 import { ResponseHeaders } from './ResponseHeaders';
 import { ConstraintsView } from '../Fields/FieldConstraints';
+import { OptionsContext  } from '../OptionsProvider';
 
 export class ResponseDetails extends React.PureComponent<{ response: ResponseModel }> {
+  static contextType = OptionsContext;
+
   render() {
-    const { description, extensions, headers, content } = this.props.response;
+    const { description, extensions, headers, content } = this.props.response;    
     return (
       <>
         {description && <Markdown source={description} />}
@@ -27,6 +30,7 @@ export class ResponseDetails extends React.PureComponent<{ response: ResponseMod
                 {schema?.type === 'object' && (
                   <ConstraintsView constraints={schema?.constraints || []} />
                 )}
+                { this.context.showSchemaDescription && schema?.description &&  <Markdown source={schema.description} />}
                 <Schema skipWriteOnly={true} key="schema" schema={schema} />
               </>
             );

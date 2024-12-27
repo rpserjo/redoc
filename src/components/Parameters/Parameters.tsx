@@ -13,6 +13,7 @@ import { Markdown } from '../Markdown/Markdown';
 import { ConstraintsView } from '../Fields/FieldConstraints';
 import { RequiredLabel } from '../../common-elements/fields';
 import styled from '../../styled-components';
+import { OptionsContext } from '../OptionsProvider';
 
 function safePush(obj, prop, item) {
   if (!obj[prop]) {
@@ -37,6 +38,8 @@ export class Parameters extends React.PureComponent<ParametersProps> {
     return res;
   }
 
+  static contextType = OptionsContext;
+  
   render() {
     const { body, parameters = [] } = this.props;
     if (body === undefined && parameters === undefined) {
@@ -53,6 +56,8 @@ export class Parameters extends React.PureComponent<ParametersProps> {
 
     const bodyRequired = body && body.required;
 
+    const showSchemaDescription = this.context.showSchemaDescription;
+
     return (
       <>
         {paramsPlaces.map(place => (
@@ -63,6 +68,7 @@ export class Parameters extends React.PureComponent<ParametersProps> {
             content={bodyContent}
             description={bodyDescription}
             bodyRequired={bodyRequired}
+            showSchemaDescription={showSchemaDescription}
           />
         )}
       </>
@@ -90,8 +96,9 @@ export function BodyContent(props: {
   content: MediaContentModel;
   description?: string;
   bodyRequired?: boolean;
+  showSchemaDescription?: boolean;
 }): JSX.Element {
-  const { content, description, bodyRequired } = props;
+  const { content, description, bodyRequired, showSchemaDescription } = props;
   const { isRequestType } = content;
   return (
     <MediaTypesSwitch
@@ -105,7 +112,7 @@ export function BodyContent(props: {
             {schema?.type === 'object' && (
               <ConstraintsView constraints={schema?.constraints || []} />
             )}
-            {isRequestType && schema?.description}
+            {showSchemaDescription && isRequestType && schema?.description && <Markdown source={schema.description} />}
             <Schema
               skipReadOnly={isRequestType}
               skipWriteOnly={!isRequestType}

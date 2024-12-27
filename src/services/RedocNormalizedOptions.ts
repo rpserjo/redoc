@@ -57,10 +57,13 @@ export interface RedocRawOptions {
   hideFab?: boolean;
   minCharacterLengthToInitSearch?: number;
   showWebhookVerb?: boolean;
+
+  /* customization */
   putDownSchema?: boolean;
   customSchemaLabel?: string;
   collapsibleGroups?: boolean;
   hideSchemaExamples?: boolean;
+  showSchemaDescription?: boolean;
 }
 
 export function argValueToBoolean(val?: string | boolean, defaultValue?: boolean): boolean {
@@ -262,10 +265,13 @@ export class RedocNormalizedOptions {
   hideFab: boolean;
   minCharacterLengthToInitSearch: number;
   showWebhookVerb: boolean;
+
+  /* customization */
   putDownSchema: boolean;
   customSchemaLabel: string;
   collapsibleGroups: boolean;
   hideSchemaExamples: boolean;
+  showSchemaDescription: boolean;
 
   nonce?: string;
 
@@ -346,9 +352,12 @@ export class RedocNormalizedOptions {
     this.hideFab = argValueToBoolean(raw.hideFab);
     this.minCharacterLengthToInitSearch = argValueToNumber(raw.minCharacterLengthToInitSearch) || 3;
     this.showWebhookVerb = argValueToBoolean(raw.showWebhookVerb);
+
+    /* customization */
     this.putDownSchema = argValueToBoolean(raw.putDownSchema, false);
     this.customSchemaLabel = raw.customSchemaLabel ? raw.customSchemaLabel.substring(0, 7) : 'schema';
     this.collapsibleGroups = argValueToBoolean(raw.collapsibleGroups, false);
     this.hideSchemaExamples = argValueToBoolean(raw.hideSchemaExamples, false);
+    this.showSchemaDescription = argValueToBoolean(raw.showSchemaDescription, false);
   }
 }
