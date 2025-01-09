@@ -16,6 +16,8 @@ const options: RedocRawOptions = {
   maxDisplayedEnumValues: 3,
   putDownSchema: true,
   collapsibleGroups: true,
+  customSchemaLabel: 'payload',
+  showSchemaDescription: true
 };
 
 render(<RedocStandalone specUrl={specUrl} options={options} />, document.getElementById('example'));
