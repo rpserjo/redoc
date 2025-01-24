@@ -28,6 +28,7 @@ export class GroupModel implements IMenuItem {
 
   depth: number;
   level: number;
+  collapsibleGroups: boolean = false;
   //#endregion
 
   constructor(
@@ -43,6 +44,7 @@ export class GroupModel implements IMenuItem {
     this.type = type;
     this.name = tagOrGroup['x-displayName'] || tagOrGroup.name;
     this.level = (tagOrGroup as MarkdownHeading).level || 1;
+    this.collapsibleGroups = !collapsedGroup;
 
     this.sidebarLabel = this.name;
 
@@ -79,8 +81,8 @@ export class GroupModel implements IMenuItem {
   @action
   collapse() {
     // disallow collapsing groups
-    if (this.type === 'group') {
-      // return;
+    if (this.type === 'group' && !this.collapsibleGroups) {
+      return;
     }
     this.expanded = false;
   }
