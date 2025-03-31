@@ -6,7 +6,6 @@ export const MiddlePanel = styled.div<{ $compact?: boolean, $wide?: boolean }>`
     width: ${`${$wide ? '100%' : `calc(100% - ${theme.rightPanel.width})`}`};
   `};
   padding: 0 ${props => props.theme.spacing.sectionHorizontal}px;
-  border: 1px solid yellowgreen;
 
   ${({ $compact, theme }) =>
     media.lessThan('medium', true)`
