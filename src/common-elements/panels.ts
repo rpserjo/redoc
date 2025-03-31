@@ -1,9 +1,12 @@
 import { SECTION_ATTR } from '../services/MenuStore';
 import styled, { media } from '../styled-components';
-
-export const MiddlePanel = styled.div<{ $compact?: boolean }>`
-  width: calc(100% - ${props => props.theme.rightPanel.width});
+//   width: calc(100% - ${props => props.theme.rightPanel.width});
+export const MiddlePanel = styled.div<{ $compact?: boolean, $wide?: boolean }>`
+  ${({ $wide, theme }) => `
+    width: ${`${$wide ? '100%' : `calc(100% - ${theme.rightPanel.width})`}`};
+  `};
   padding: 0 ${props => props.theme.spacing.sectionHorizontal}px;
+  border: 1px solid yellowgreen;
 
   ${({ $compact, theme }) =>
     media.lessThan('medium', true)`
@@ -60,8 +63,14 @@ export const RightPanel = styled.div`
   `};
 `;
 
-export const DarkRightPanel = styled(RightPanel)`
+export const DarkRightPanel = styled(RightPanel)<{ $hide?: boolean }>`
   background-color: ${props => props.theme.rightPanel.backgroundColor};
+  ${({ $hide, theme }) =>
+  ($hide &&
+    `
+      padding-bottom: ${theme.spacing.sectionVertical}px;
+      padding-top: ${theme.spacing.sectionVertical}px;
+    `) || ''}
 `;
 
 export const Row = styled.div`

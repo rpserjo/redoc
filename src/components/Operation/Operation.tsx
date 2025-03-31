@@ -61,7 +61,7 @@ export const Operation = observer(({ operation }: OperationProps): JSX.Element =
             <ResponsesList responses={operation.responses} />
             <CallbacksList callbacks={operation.callbacks} />
           </MiddlePanel>
-          <DarkRightPanel>
+          <DarkRightPanel $hide={options.wideSection}>
             {!options.pathInMiddlePanel && !isWebhook && <Endpoint operation={operation} />}
             <RequestSamples operation={operation} />
             <ResponseSamples operation={operation} />

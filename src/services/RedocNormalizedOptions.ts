@@ -64,6 +64,7 @@ export interface RedocRawOptions {
   collapsibleGroups?: boolean;
   hideSchemaExamples?: boolean;
   showSchemaDescription?: boolean;
+  wideSection?: boolean;
 }
 
 export function argValueToBoolean(val?: string | boolean, defaultValue?: boolean): boolean {
@@ -272,6 +273,7 @@ export class RedocNormalizedOptions {
   collapsibleGroups: boolean;
   hideSchemaExamples: boolean;
   showSchemaDescription: boolean;
+  wideSection: boolean;
 
   nonce?: string;
 
@@ -359,5 +361,6 @@ export class RedocNormalizedOptions {
     this.collapsibleGroups = argValueToBoolean(raw.collapsibleGroups, false);
     this.hideSchemaExamples = argValueToBoolean(raw.hideSchemaExamples, false);
     this.showSchemaDescription = argValueToBoolean(raw.showSchemaDescription, false);
+    this.wideSection = argValueToBoolean(raw.wideSection, false);
   }
 }

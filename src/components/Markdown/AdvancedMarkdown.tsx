@@ -8,8 +8,9 @@ import { OptionsConsumer } from '../OptionsProvider';
 import { StoreConsumer } from '../StoreBuilder';
 
 export interface AdvancedMarkdownProps extends BaseMarkdownProps {
-  htmlWrap?: (part: JSX.Element) => JSX.Element;
+  htmlWrap?: (part: JSX.Element, wide: boolean) => JSX.Element;
   parentId?: string;
+  wide?: boolean;
 }
 
 export class AdvancedMarkdown extends React.Component<AdvancedMarkdownProps> {
@@ -24,7 +25,7 @@ export class AdvancedMarkdown extends React.Component<AdvancedMarkdownProps> {
   }
 
   renderWithOptionsAndStore(options: RedocNormalizedOptions, store?: AppStore) {
-    const { source, htmlWrap = i => i } = this.props;
+    const { source, htmlWrap = i => i, wide = false } = this.props;
     if (!store) {
       throw new Error('When using components in markdown, store prop must be provided');
     }
@@ -39,7 +40,7 @@ export class AdvancedMarkdown extends React.Component<AdvancedMarkdownProps> {
     return parts.map((part, idx) => {
       if (typeof part === 'string') {
         return React.cloneElement(
-          htmlWrap(<SanitizedMarkdownHTML html={part} inline={false} compact={false} />),
+          htmlWrap(<SanitizedMarkdownHTML html={part} inline={false} compact={false}/>, wide),
           { key: idx },
         );
       }

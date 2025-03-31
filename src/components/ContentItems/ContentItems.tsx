@@ -7,6 +7,7 @@ import { H1, H2, MiddlePanel, Row, Section, ShareLink } from '../../common-eleme
 import type { ContentItemModel } from '../../services';
 import type { GroupModel, OperationModel } from '../../services/models';
 import { Operation } from '../Operation/Operation';
+import { OptionsContext } from '../OptionsProvider';
 
 @observer
 export class ContentItems extends React.Component<{
@@ -61,10 +62,11 @@ export class ContentItem extends React.Component<ContentItemProps> {
   }
 }
 
-const middlePanelWrap = component => <MiddlePanel $compact={true}>{component}</MiddlePanel>;
+const middlePanelWrap = (component, wide) => <MiddlePanel $compact={true} $wide={wide}>{component}</MiddlePanel>;
 
 @observer
 export class SectionItem extends React.Component<ContentItemProps> {
+  static contextType = OptionsContext;
   render() {
     const { name, description, externalDocs, level } = this.props.item as GroupModel;
 
@@ -72,7 +74,7 @@ export class SectionItem extends React.Component<ContentItemProps> {
     return (
       <>
         <Row>
-          <MiddlePanel $compact={false}>
+          <MiddlePanel $compact={false} $wide={this.context.wideSection}>
             <Header>
               <ShareLink to={this.props.item.id} />
               {name}
@@ -83,6 +85,7 @@ export class SectionItem extends React.Component<ContentItemProps> {
           parentId={this.props.item.id}
           source={description || ''}
           htmlWrap={middlePanelWrap}
+          wide={this.context.wideSection}
         />
         {externalDocs && (
           <Row>

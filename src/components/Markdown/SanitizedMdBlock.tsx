@@ -16,7 +16,7 @@ export function SanitizedMarkdownHTML({
   inline,
   compact,
   ...rest
-}: StylingMarkdownProps & { html: string; className?: string; 'data-role'?: string }) {
+}: StylingMarkdownProps & { html: string; className?: string; 'data-role'?: string, wide?:boolean }) {
   const Wrap = inline ? StyledMarkdownSpan : StyledMarkdownBlock;
 
   return (
@@ -31,6 +31,7 @@ export function SanitizedMarkdownHTML({
           {...rest}
           $inline={inline}
           $compact={compact}
+          $wide={rest.wide}
         />
       )}
     </OptionsConsumer>
