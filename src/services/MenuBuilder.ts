@@ -1,10 +1,12 @@
-import type { OpenAPISpec, OpenAPIPaths, OpenAPITag, OpenAPISchema } from '../types';
-import { isOperationName, JsonPointer, alphabeticallyByProp } from '../utils';
+import type { OpenAPIPaths, OpenAPISchema, OpenAPISpec, OpenAPITag } from '../types';
+import { alphabeticallyByProp, isOperationName, JsonPointer } from '../utils';
 import { MarkdownRenderer } from './MarkdownRenderer';
 import { GroupModel, OperationModel } from './models';
 import type { OpenAPIParser } from './OpenAPIParser';
 import type { RedocNormalizedOptions } from './RedocNormalizedOptions';
 import type { ContentItemModel, TagGroup, TagInfo, TagsInfoMap } from './types';
+import { contentTypes, detectContentType } from '../utils/detectContentType';
+import asciidoctor from 'asciidoctor';
 
 export const GROUP_DEPTH = 0;
 
@@ -41,6 +43,13 @@ export class MenuBuilder {
     initialDepth: number,
     options: RedocNormalizedOptions,
   ): ContentItemModel[] {
+    if (detectContentType(description) === contentTypes.asciidoc) {
+      description = asciidoctor().convert(description, { doctype: 'book', attributes: 'showtitle'}).toString();
+      description = description.replace(/<h([1-6])[^>]*>(.*?)<\/h\1>/gi, (_, level, content) => {
+        const hashes = '#'.repeat(parseInt(level));
+        return `\n${hashes} ${content.trim()}\n`;
+      });
+    }
     const renderer = new MarkdownRenderer(options, parent?.id);
     const headings = renderer.extractHeadings(description || '');
 

@@ -3,6 +3,7 @@ import { marked } from 'marked';
 import { highlight, safeSlugify, unescapeHTMLChars } from '../utils';
 import { RedocNormalizedOptions } from './RedocNormalizedOptions';
 import type { MarkdownHeading, MDXComponentMeta } from './types';
+import { contentTypes, detectContentType } from '../utils/detectContentType';
 
 const renderer = new marked.Renderer();
 
@@ -32,7 +33,9 @@ export class MarkdownRenderer {
   }
 
   static getTextBeforeHading(md: string, heading: string): string {
-    const headingLinePos = md.search(new RegExp(`^##?\\s+${heading}`, 'm'));
+    const isAscii = detectContentType(md) === contentTypes.asciidoc;
+    const regExpPattern = isAscii ? `^==?\\s+${heading}` : `^##?\\s+${heading}`;
+    const headingLinePos = md.search(new RegExp(regExpPattern, 'm'));
     if (headingLinePos > -1) {
       return md.substring(0, headingLinePos);
     }
