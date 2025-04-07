@@ -1,11 +1,10 @@
 import type { OpenAPIPaths, OpenAPISchema, OpenAPISpec, OpenAPITag } from '../types';
-import { alphabeticallyByProp, isOperationName, JsonPointer } from '../utils';
+import { alphabeticallyByProp, isOperationName, JsonPointer, contentTypes, detectContentType } from '../utils';
 import { MarkdownRenderer } from './MarkdownRenderer';
 import { GroupModel, OperationModel } from './models';
 import type { OpenAPIParser } from './OpenAPIParser';
 import type { RedocNormalizedOptions } from './RedocNormalizedOptions';
 import type { ContentItemModel, TagGroup, TagInfo, TagsInfoMap } from './types';
-import { contentTypes, detectContentType } from '../utils/detectContentType';
 import asciidoctor from 'asciidoctor';
 
 export const GROUP_DEPTH = 0;

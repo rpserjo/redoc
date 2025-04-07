@@ -1,9 +1,8 @@
 import { marked } from 'marked';
 
-import { highlight, safeSlugify, unescapeHTMLChars } from '../utils';
+import { highlight, safeSlugify, unescapeHTMLChars, contentTypes, detectContentType } from '../utils';
 import { RedocNormalizedOptions } from './RedocNormalizedOptions';
 import type { MarkdownHeading, MDXComponentMeta } from './types';
-import { contentTypes, detectContentType } from '../utils/detectContentType';
 
 const renderer = new marked.Renderer();
 
