@@ -104,6 +104,10 @@ export class OpenAPIParser {
         throw new Error(`Failed to resolve $ref "${obj.$ref}"`);
       }
 
+      if (resolved && obj['x-description'] !== undefined && obj['x-description'].length > 0) {
+        resolved['description'] = obj['x-description'];
+      }
+
       let refsStack = baseRefsStack;
       if (baseRefsStack.includes(obj.$ref) || baseRefsStack.length > MAX_DEREF_DEPTH) {
         resolved = Object.assign({}, resolved, { 'x-circular-ref': true });
