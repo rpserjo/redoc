@@ -64,6 +64,7 @@ export interface RedocRawOptions {
   collapsibleGroups?: boolean;
   hideSchemaExamples?: boolean;
   showSchemaDescription?: boolean;
+  externalDocsLabel?: string;
 }
 
 export function argValueToBoolean(val?: string | boolean, defaultValue?: boolean): boolean {
@@ -272,6 +273,7 @@ export class RedocNormalizedOptions {
   collapsibleGroups: boolean;
   hideSchemaExamples: boolean;
   showSchemaDescription: boolean;
+  externalDocsLabel: string;
 
   nonce?: string;
 
@@ -355,9 +357,14 @@ export class RedocNormalizedOptions {
 
     /* customization */
     this.putDownSchema = argValueToBoolean(raw.putDownSchema, false);
-    this.customSchemaLabel = raw.customSchemaLabel ? raw.customSchemaLabel.substring(0, 7) : 'schema';
+    this.customSchemaLabel = raw.customSchemaLabel
+      ? raw.customSchemaLabel.substring(0, 7)
+      : 'schema';
     this.collapsibleGroups = argValueToBoolean(raw.collapsibleGroups, false);
     this.hideSchemaExamples = argValueToBoolean(raw.hideSchemaExamples, false);
     this.showSchemaDescription = argValueToBoolean(raw.showSchemaDescription, false);
+    this.externalDocsLabel = raw.externalDocsLabel
+      ? raw.externalDocsLabel
+      : 'External documentation';
   }
 }

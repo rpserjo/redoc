@@ -1,5 +1,10 @@
 import type { OpenAPISpec, OpenAPIPaths, OpenAPITag, OpenAPISchema } from '../types';
-import { isOperationName, JsonPointer, alphabeticallyByProp } from '../utils';
+import {
+  isOperationName,
+  JsonPointer,
+  alphabeticallyByProp,
+  externalDocsToMarkdown,
+} from '../utils';
 import { MarkdownRenderer } from './MarkdownRenderer';
 import { GroupModel, OperationModel } from './models';
 import type { OpenAPIParser } from './OpenAPIParser';
@@ -21,6 +26,16 @@ export class MenuBuilder {
     const items: ContentItemModel[] = [];
     const tagsMap = MenuBuilder.getTagsWithOperations(parser, spec);
     items.push(...MenuBuilder.addMarkdownItems(spec.info.description || '', undefined, 1, options));
+    if (spec['x-externalDocs'] && spec['x-externalDocs'].length > 0) {
+      items.push(
+        ...MenuBuilder.addMarkdownItems(
+          externalDocsToMarkdown(options.externalDocsLabel, spec['x-externalDocs']),
+          undefined,
+          1,
+          options,
+        ),
+      );
+    }
     if (spec['x-tagGroups'] && spec['x-tagGroups'].length > 0) {
       items.push(
         ...MenuBuilder.getTagGroupsItems(parser, undefined, spec['x-tagGroups'], tagsMap, options),

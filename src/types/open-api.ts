@@ -11,6 +11,7 @@ export interface OpenAPISpec {
   externalDocs?: OpenAPIExternalDocumentation;
   'x-webhooks'?: OpenAPIPaths;
   webhooks?: OpenAPIPaths;
+  'x-externalDocs'?: OpenAPIExternalDocumentation[];
 }
 
 export interface OpenAPIInfo {

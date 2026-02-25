@@ -14,6 +14,7 @@ import {
   OpenAPISchema,
   OpenAPIServer,
   Referenced,
+  OpenAPIExternalDocumentation,
 } from '../types';
 import { IS_BROWSER } from './dom';
 import { isNumeric, removeQueryStringAndHash, resolveUrl, isArray, isBoolean } from './helpers';
@@ -719,4 +720,16 @@ export function getContentWithLegacyExamples(
   }
 
   return mediaContent;
+}
+
+export function externalDocsToMarkdown(
+  label: string,
+  externalDocs: OpenAPIExternalDocumentation[],
+): string {
+  return [
+    '# ' + label,
+    ...externalDocs.map((item, key) => {
+      return `${key + 1}. [${item.description ? item.description : item.url}](${item.url})`;
+    }),
+  ].join('\n');
 }
