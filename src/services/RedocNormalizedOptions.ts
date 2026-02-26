@@ -357,14 +357,10 @@ export class RedocNormalizedOptions {
 
     /* customization */
     this.putDownSchema = argValueToBoolean(raw.putDownSchema, false);
-    this.customSchemaLabel = raw.customSchemaLabel
-      ? raw.customSchemaLabel.substring(0, 7)
-      : 'schema';
+    this.customSchemaLabel = raw.customSchemaLabel ? raw.customSchemaLabel.substring(0, 7) : 'schema';
     this.collapsibleGroups = argValueToBoolean(raw.collapsibleGroups, false);
     this.hideSchemaExamples = argValueToBoolean(raw.hideSchemaExamples, false);
     this.showSchemaDescription = argValueToBoolean(raw.showSchemaDescription, false);
-    this.externalDocsLabel = raw.externalDocsLabel
-      ? raw.externalDocsLabel
-      : 'External documentation';
+    this.externalDocsLabel = raw.externalDocsLabel ? raw.externalDocsLabel : 'External documentation';
   }
 }

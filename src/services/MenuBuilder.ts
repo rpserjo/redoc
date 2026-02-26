@@ -1,10 +1,5 @@
 import type { OpenAPISpec, OpenAPIPaths, OpenAPITag, OpenAPISchema } from '../types';
-import {
-  isOperationName,
-  JsonPointer,
-  alphabeticallyByProp,
-  externalDocsToMarkdown,
-} from '../utils';
+import { isOperationName, JsonPointer, alphabeticallyByProp, externalDocsToMarkdown } from '../utils';
 import { MarkdownRenderer } from './MarkdownRenderer';
 import { GroupModel, OperationModel } from './models';
 import type { OpenAPIParser } from './OpenAPIParser';
