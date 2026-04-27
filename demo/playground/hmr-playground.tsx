@@ -15,9 +15,11 @@ const options: RedocRawOptions = {
   nativeScrollbars: false,
   maxDisplayedEnumValues: 3,
   putDownSchema: true,
-  collapsibleGroups: true,
+  collapsibleGroups: false,
   customSchemaLabel: 'payload',
-  showSchemaDescription: true
+  showSchemaDescription: true,
+  // externalDocsLabel: 'Документация для разработчиков',
+  showExtensions: true
 };
 
 render(<RedocStandalone specUrl={specUrl} options={options} />, document.getElementById('example'));
