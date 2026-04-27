@@ -728,7 +728,7 @@ export function externalDocsToMarkdown(
 ): string {
   return [
     '# ' + label,
-    ...externalDocs.map((item, key) => {
+    ...externalDocs.filter(item => item.url).map((item, key) => {
       return `${key + 1}. [${item.description ? item.description : item.url}](${item.url})`;
     }),
   ].join('\n');
