@@ -9,7 +9,8 @@ const swagger = window.location.search.indexOf('swagger') > -1;
 const userUrl = window.location.search.match(/url=(.*)$/);
 
 const specUrl =
-  (userUrl && userUrl[1]) || (swagger ? 'swagger.yaml' : big ? 'big-openapi.json' : 'specification.json');
+  (userUrl && userUrl[1]) ||
+  (swagger ? 'swagger.yaml' : big ? 'big-openapi.json' : 'specification.json');
 
 const options: RedocRawOptions = {
   nativeScrollbars: false,
@@ -17,7 +18,8 @@ const options: RedocRawOptions = {
   putDownSchema: true,
   collapsibleGroups: true,
   customSchemaLabel: 'payload',
-  showSchemaDescription: true
+  showSchemaDescription: false,
+  showResponseDescription: true,
 };
 
 render(<RedocStandalone specUrl={specUrl} options={options} />, document.getElementById('example'));
