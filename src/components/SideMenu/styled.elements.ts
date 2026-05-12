@@ -81,7 +81,7 @@ function menuItemActive(
     return theme.sidebar.groupItems[option];
   } else if (depth === -1) {
     return theme.sidebar['level-1Items'][option];
-  }else {
+  } else {
     return '';
   }
 }
@@ -89,10 +89,6 @@ function menuItemActive(
 export const MenuItemUl = styled.ul<{ $expanded: boolean }>`
   margin: 0;
   padding: 0;
-
-  &:first-child {
-    padding-bottom: 32px;
-  }
 
   & & {
     font-size: 0.929em;
@@ -112,9 +108,9 @@ export const MenuItemLi = styled.li<{ depth: number }>`
 export const menuItemDepth = {
   '-1': css`
     opacity: 0.85;
-    text-transform: ${({ theme}) => theme.sidebar['level-1Items'].textTransform};
-    font-size: ${({ theme}) => theme.sidebar['level-1Items'].fontSize};
-    font-weight: ${({ theme}) => theme.sidebar['level-1Items'].fontWeight};
+    text-transform: ${({ theme }) => theme.sidebar['level-1Items'].textTransform};
+    font-size: ${({ theme }) => theme.sidebar['level-1Items'].fontSize};
+    font-weight: ${({ theme }) => theme.sidebar['level-1Items'].fontWeight};
     padding-bottom: 12.5px;
     cursor: pointer;
   `,
