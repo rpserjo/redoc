@@ -17,7 +17,8 @@ const options: RedocRawOptions = {
   putDownSchema: true,
   collapsibleGroups: true,
   customSchemaLabel: 'payload',
-  showSchemaDescription: true
+  showParamsSchemaDescription: true,
+  showResponseSchemaDescription: true,
 };
 
 render(<RedocStandalone specUrl={specUrl} options={options} />, document.getElementById('example'));

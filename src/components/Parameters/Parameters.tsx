@@ -56,7 +56,7 @@ export class Parameters extends React.PureComponent<ParametersProps> {
 
     const bodyRequired = body && body.required;
 
-    const showSchemaDescription = this.context.showSchemaDescription;
+    const showParamsSchemaDescription = this.context.showParamsSchemaDescription;
 
     return (
       <>
@@ -68,7 +68,7 @@ export class Parameters extends React.PureComponent<ParametersProps> {
             content={bodyContent}
             description={bodyDescription}
             bodyRequired={bodyRequired}
-            showSchemaDescription={showSchemaDescription}
+            showParamsSchemaDescription={showParamsSchemaDescription}
           />
         )}
       </>
@@ -96,9 +96,9 @@ export function BodyContent(props: {
   content: MediaContentModel;
   description?: string;
   bodyRequired?: boolean;
-  showSchemaDescription?: boolean;
+  showParamsSchemaDescription?: boolean;
 }): JSX.Element {
-  const { content, description, bodyRequired, showSchemaDescription } = props;
+  const { content, description, bodyRequired, showParamsSchemaDescription } = props;
   const { isRequestType } = content;
   return (
     <MediaTypesSwitch
@@ -112,7 +112,7 @@ export function BodyContent(props: {
             {schema?.type === 'object' && (
               <ConstraintsView constraints={schema?.constraints || []} />
             )}
-            {showSchemaDescription && isRequestType && schema?.description && <Markdown source={schema.description} />}
+            {showParamsSchemaDescription && isRequestType && schema?.description && <Markdown source={schema.description} />}
             <Schema
               skipReadOnly={isRequestType}
               skipWriteOnly={!isRequestType}

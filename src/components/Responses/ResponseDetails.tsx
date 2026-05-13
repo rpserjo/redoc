@@ -30,7 +30,7 @@ export class ResponseDetails extends React.PureComponent<{ response: ResponseMod
                 {schema?.type === 'object' && (
                   <ConstraintsView constraints={schema?.constraints || []} />
                 )}
-                { this.context.showSchemaDescription && schema?.description &&  <Markdown source={schema.description} />}
+                { this.context.showResponseSchemaDescription && schema?.description &&  <Markdown source={schema.description} />}
                 <Schema skipWriteOnly={true} key="schema" schema={schema} />
               </>
             );

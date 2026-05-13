@@ -63,7 +63,8 @@ export interface RedocRawOptions {
   customSchemaLabel?: string;
   collapsibleGroups?: boolean;
   hideSchemaExamples?: boolean;
-  showSchemaDescription?: boolean;
+  showParamsSchemaDescription?: boolean;
+  showResponseSchemaDescription?: boolean;
 }
 
 export function argValueToBoolean(val?: string | boolean, defaultValue?: boolean): boolean {
@@ -271,7 +272,8 @@ export class RedocNormalizedOptions {
   customSchemaLabel: string;
   collapsibleGroups: boolean;
   hideSchemaExamples: boolean;
-  showSchemaDescription: boolean;
+  showParamsSchemaDescription: boolean;
+  showResponseSchemaDescription: boolean;
 
   nonce?: string;
 
@@ -358,6 +360,7 @@ export class RedocNormalizedOptions {
     this.customSchemaLabel = raw.customSchemaLabel ? raw.customSchemaLabel.substring(0, 7) : 'schema';
     this.collapsibleGroups = argValueToBoolean(raw.collapsibleGroups, false);
     this.hideSchemaExamples = argValueToBoolean(raw.hideSchemaExamples, false);
-    this.showSchemaDescription = argValueToBoolean(raw.showSchemaDescription, false);
+    this.showParamsSchemaDescription = argValueToBoolean(raw.showParamsSchemaDescription, false);
+    this.showResponseSchemaDescription = argValueToBoolean(raw.showResponseSchemaDescription, false);
   }
 }
